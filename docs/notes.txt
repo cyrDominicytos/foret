@@ -1,0 +1,19 @@
+=== supprimer cache vue ===
+php artisan view:clear
+php artisan cache:clear
+php artisan config:clear
+----------
+php artisan config:cache
+----------
+docker-compose up nginx mysql phpmyadmin workspace
+----------
+php artisan make:migration create_textos_table --create=textos
+----------
+php artisan permission:cache-reset
+
+https://medium.com/@hbayraktar/how-to-install-laravel-5-on-amazon-linux-2-303ef2d38fa4
+
+xcopy D:\Chif\workspace\GroupeLack\AppStart D:\Chif\workspace\GroupeLack\CultureGeneraleCa /s /e
+-----------------------
+php -d memory_limit=-1 "C:\ProgramData\ComposerSetup\bin\composer.phar" require spatie/laravel-medialibrary
+-----------------------

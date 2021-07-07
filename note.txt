@@ -1,0 +1,53 @@
+-- Users
+
+super@eforex.com / MotDeP@sse!
+
+admin@eforex.com / MotDeP@sse!
+
+faissalealley@gmail.com : Directeur Général
+chachaalley6@gmail.com : DRAF	
+cyrdominicytos@gmail.com : CIF Collines
+www.1dominicytos@gmail.com : Responsable section communale de Save
+valentin.akando@gmail.com : poste forestier de Kaboua
+levyganiero@gmail.com  : Commandant BFSP
+        : poste forestier de Oké-Owo
+valentin.akando@yahoo.ca : poste forestier de Kaboua
+   cyrtrade@gmail.com     : usager
+
+
+MotDeP@sse!23#%dd
+
+MotDeP@sse!23#%ddwwssxx&_2237%%3
+
+
+================ Déploiement ====================
+
+
+- Creation de la vue (produits_exportes_par_annee)
+- Licence Backpack
+- passer de APP_DEBUG=true à APP_DEBUG=false
+- scheduler des mails:
+/usr/local/bin/php /home/eforex/public_html/eforex/artisan schedule:run >> /dev/null 2>&1
+- supprimer testcontroller et ses routes
+- Table pivot des postes 
+
+================ Creation de la vue (produits_exportes_par_annee) ====================
+
+CREATE OR REPLACE VIEW produits_exportes_par_annees
+AS
+
+SELECT 
+	id_usager AS id_usager,
+	caracteristique_produit_procedure_exportations.id_espece_produit AS id_espece_produit,
+	 caracteristique_produit_procedure_exportations.id_type_produit AS id_type_produit,
+	 SUM(caracteristique_produit_procedure_exportations.volume) AS volume,
+	 procedure_exportations.commune_provenance AS id_commune_provenance,
+	 procedure_exportations.commune_empotage AS id_commune_empotage,
+	 YEAR(procedure_exportations.date_depart) AS annee
+FROM procedure_exportations, caracteristique_produit_procedure_exportations
+
+GROUP BY id_usager, annee, id_espece_produit, id_type_produit, id_commune_provenance, id_commune_empotage
+
+=====================================
+==================Probleme de permission sur log file================
+https://developpaper.com/laravel-log-file-write-failed-permission-denied/
